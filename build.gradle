@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Управление версиями JUnit через BOM (Bill of Materials)
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter' // JUnit для тестов
+    testImplementation 'com.codeborne:selenide:6.19.1' // Selenide для автоматизации браузера
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8' // Устанавливаем кодировку UTF-8
+}
+
+test {
+    useJUnitPlatform() // Указываем, что будем использовать JUnit Platform
+}
